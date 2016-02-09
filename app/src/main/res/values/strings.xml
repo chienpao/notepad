@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">notepad</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_additem">AddItemActivity</string>
+    <string name="title_activity_history">HistoryActivity</string>
+
+    <string name="main_activity_add">Add</string>
+    <string name="main_activity_history">History</string>
+
+    <!-- Add Item Activity -->
+    <string name="add_item_activity_item_name">Name</string>
+    <string name="add_item_activity_item_count">Count</string>
+    <string name="add_item_activity_item_note">Note</string>
+
+    <string name="add_item_activity_save">Save</string>
+    <string name="add_item_activity_save_toast">Save item success!</string>
+
+    <string name="add_item_activity_new">New</string>
+    <string name="add_item_activity_delete">Delete</string>
+
+    <!-- History Activity -->
+    <string name="history_activity_delete_history">Delete History</string>
+    <string name="history_activity_delete_history_toast">Delete History success!</string>
+
+</resources>
