@@ -27,10 +27,10 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
     private static final Set<Class<? extends RealmObject>> MODEL_CLASSES;
     static {
         Set<Class<? extends RealmObject>> modelClasses = new HashSet<Class<? extends RealmObject>>();
-        modelClasses.add(Dog.class);
+        modelClasses.add(Cat.class);
         modelClasses.add(Person.class);
         modelClasses.add(Item.class);
-        modelClasses.add(Cat.class);
+        modelClasses.add(Dog.class);
         MODEL_CLASSES = Collections.unmodifiableSet(modelClasses);
     }
 
@@ -38,14 +38,14 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
     public Table createTable(Class<? extends RealmObject> clazz, ImplicitTransaction transaction) {
         checkClass(clazz);
 
-        if (clazz.equals(Dog.class)) {
-            return DogRealmProxy.initTable(transaction);
+        if (clazz.equals(Cat.class)) {
+            return CatRealmProxy.initTable(transaction);
         } else if (clazz.equals(Person.class)) {
             return PersonRealmProxy.initTable(transaction);
         } else if (clazz.equals(Item.class)) {
             return ItemRealmProxy.initTable(transaction);
-        } else if (clazz.equals(Cat.class)) {
-            return CatRealmProxy.initTable(transaction);
+        } else if (clazz.equals(Dog.class)) {
+            return DogRealmProxy.initTable(transaction);
         } else {
             throw getMissingProxyClassException(clazz);
         }
@@ -55,14 +55,14 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
     public ColumnInfo validateTable(Class<? extends RealmObject> clazz, ImplicitTransaction transaction) {
         checkClass(clazz);
 
-        if (clazz.equals(Dog.class)) {
-            return DogRealmProxy.validateTable(transaction);
+        if (clazz.equals(Cat.class)) {
+            return CatRealmProxy.validateTable(transaction);
         } else if (clazz.equals(Person.class)) {
             return PersonRealmProxy.validateTable(transaction);
         } else if (clazz.equals(Item.class)) {
             return ItemRealmProxy.validateTable(transaction);
-        } else if (clazz.equals(Cat.class)) {
-            return CatRealmProxy.validateTable(transaction);
+        } else if (clazz.equals(Dog.class)) {
+            return DogRealmProxy.validateTable(transaction);
         } else {
             throw getMissingProxyClassException(clazz);
         }
@@ -72,14 +72,14 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
     public List<String> getFieldNames(Class<? extends RealmObject> clazz) {
         checkClass(clazz);
 
-        if (clazz.equals(Dog.class)) {
-            return DogRealmProxy.getFieldNames();
+        if (clazz.equals(Cat.class)) {
+            return CatRealmProxy.getFieldNames();
         } else if (clazz.equals(Person.class)) {
             return PersonRealmProxy.getFieldNames();
         } else if (clazz.equals(Item.class)) {
             return ItemRealmProxy.getFieldNames();
-        } else if (clazz.equals(Cat.class)) {
-            return CatRealmProxy.getFieldNames();
+        } else if (clazz.equals(Dog.class)) {
+            return DogRealmProxy.getFieldNames();
         } else {
             throw getMissingProxyClassException(clazz);
         }
@@ -89,14 +89,14 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
     public String getTableName(Class<? extends RealmObject> clazz) {
         checkClass(clazz);
 
-        if (clazz.equals(Dog.class)) {
-            return DogRealmProxy.getTableName();
+        if (clazz.equals(Cat.class)) {
+            return CatRealmProxy.getTableName();
         } else if (clazz.equals(Person.class)) {
             return PersonRealmProxy.getTableName();
         } else if (clazz.equals(Item.class)) {
             return ItemRealmProxy.getTableName();
-        } else if (clazz.equals(Cat.class)) {
-            return CatRealmProxy.getTableName();
+        } else if (clazz.equals(Dog.class)) {
+            return DogRealmProxy.getTableName();
         } else {
             throw getMissingProxyClassException(clazz);
         }
@@ -106,14 +106,14 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
     public <E extends RealmObject> E newInstance(Class<E> clazz, ColumnInfo columnInfo) {
         checkClass(clazz);
 
-        if (clazz.equals(Dog.class)) {
-            return clazz.cast(new DogRealmProxy(columnInfo));
+        if (clazz.equals(Cat.class)) {
+            return clazz.cast(new CatRealmProxy(columnInfo));
         } else if (clazz.equals(Person.class)) {
             return clazz.cast(new PersonRealmProxy(columnInfo));
         } else if (clazz.equals(Item.class)) {
             return clazz.cast(new ItemRealmProxy(columnInfo));
-        } else if (clazz.equals(Cat.class)) {
-            return clazz.cast(new CatRealmProxy(columnInfo));
+        } else if (clazz.equals(Dog.class)) {
+            return clazz.cast(new DogRealmProxy(columnInfo));
         } else {
             throw getMissingProxyClassException(clazz);
         }
@@ -130,14 +130,14 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
         // generated by RealmProxy or the original type extending directly from RealmObject
         @SuppressWarnings("unchecked") Class<E> clazz = (Class<E>) ((obj instanceof RealmObjectProxy) ? obj.getClass().getSuperclass() : obj.getClass());
 
-        if (clazz.equals(Dog.class)) {
-            return clazz.cast(DogRealmProxy.copyOrUpdate(realm, (Dog) obj, update, cache));
+        if (clazz.equals(Cat.class)) {
+            return clazz.cast(CatRealmProxy.copyOrUpdate(realm, (Cat) obj, update, cache));
         } else if (clazz.equals(Person.class)) {
             return clazz.cast(PersonRealmProxy.copyOrUpdate(realm, (Person) obj, update, cache));
         } else if (clazz.equals(Item.class)) {
             return clazz.cast(ItemRealmProxy.copyOrUpdate(realm, (Item) obj, update, cache));
-        } else if (clazz.equals(Cat.class)) {
-            return clazz.cast(CatRealmProxy.copyOrUpdate(realm, (Cat) obj, update, cache));
+        } else if (clazz.equals(Dog.class)) {
+            return clazz.cast(DogRealmProxy.copyOrUpdate(realm, (Dog) obj, update, cache));
         } else {
             throw getMissingProxyClassException(clazz);
         }
@@ -148,14 +148,14 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
         throws JSONException {
         checkClass(clazz);
 
-        if (clazz.equals(Dog.class)) {
-            return clazz.cast(DogRealmProxy.createOrUpdateUsingJsonObject(realm, json, update));
+        if (clazz.equals(Cat.class)) {
+            return clazz.cast(CatRealmProxy.createOrUpdateUsingJsonObject(realm, json, update));
         } else if (clazz.equals(Person.class)) {
             return clazz.cast(PersonRealmProxy.createOrUpdateUsingJsonObject(realm, json, update));
         } else if (clazz.equals(Item.class)) {
             return clazz.cast(ItemRealmProxy.createOrUpdateUsingJsonObject(realm, json, update));
-        } else if (clazz.equals(Cat.class)) {
-            return clazz.cast(CatRealmProxy.createOrUpdateUsingJsonObject(realm, json, update));
+        } else if (clazz.equals(Dog.class)) {
+            return clazz.cast(DogRealmProxy.createOrUpdateUsingJsonObject(realm, json, update));
         } else {
             throw getMissingProxyClassException(clazz);
         }
@@ -166,14 +166,14 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
         throws IOException {
         checkClass(clazz);
 
-        if (clazz.equals(Dog.class)) {
-            return clazz.cast(DogRealmProxy.createUsingJsonStream(realm, reader));
+        if (clazz.equals(Cat.class)) {
+            return clazz.cast(CatRealmProxy.createUsingJsonStream(realm, reader));
         } else if (clazz.equals(Person.class)) {
             return clazz.cast(PersonRealmProxy.createUsingJsonStream(realm, reader));
         } else if (clazz.equals(Item.class)) {
             return clazz.cast(ItemRealmProxy.createUsingJsonStream(realm, reader));
-        } else if (clazz.equals(Cat.class)) {
-            return clazz.cast(CatRealmProxy.createUsingJsonStream(realm, reader));
+        } else if (clazz.equals(Dog.class)) {
+            return clazz.cast(DogRealmProxy.createUsingJsonStream(realm, reader));
         } else {
             throw getMissingProxyClassException(clazz);
         }
@@ -185,14 +185,14 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
         // generated by RealmProxy or the original type extending directly from RealmObject
         @SuppressWarnings("unchecked") Class<E> clazz = (Class<E>) realmObject.getClass().getSuperclass();
 
-        if (clazz.equals(Dog.class)) {
-            return clazz.cast(DogRealmProxy.createDetachedCopy((Dog) realmObject, 0, maxDepth, cache));
+        if (clazz.equals(Cat.class)) {
+            return clazz.cast(CatRealmProxy.createDetachedCopy((Cat) realmObject, 0, maxDepth, cache));
         } else if (clazz.equals(Person.class)) {
             return clazz.cast(PersonRealmProxy.createDetachedCopy((Person) realmObject, 0, maxDepth, cache));
         } else if (clazz.equals(Item.class)) {
             return clazz.cast(ItemRealmProxy.createDetachedCopy((Item) realmObject, 0, maxDepth, cache));
-        } else if (clazz.equals(Cat.class)) {
-            return clazz.cast(CatRealmProxy.createDetachedCopy((Cat) realmObject, 0, maxDepth, cache));
+        } else if (clazz.equals(Dog.class)) {
+            return clazz.cast(DogRealmProxy.createDetachedCopy((Dog) realmObject, 0, maxDepth, cache));
         } else {
             throw getMissingProxyClassException(clazz);
         }

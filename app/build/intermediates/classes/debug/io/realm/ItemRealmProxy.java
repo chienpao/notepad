@@ -31,7 +31,7 @@ public class ItemRealmProxy extends Item
 
         public final long nameIndex;
         public final long countIndex;
-        public final long noteIndex;
+        public final long dateIndex;
         public final long idIndex;
 
         ItemColumnInfo(String path, Table table) {
@@ -42,8 +42,8 @@ public class ItemRealmProxy extends Item
             this.countIndex = getValidColumnIndex(path, table, "Item", "count");
             indicesMap.put("count", this.countIndex);
 
-            this.noteIndex = getValidColumnIndex(path, table, "Item", "note");
-            indicesMap.put("note", this.noteIndex);
+            this.dateIndex = getValidColumnIndex(path, table, "Item", "date");
+            indicesMap.put("date", this.dateIndex);
 
             this.idIndex = getValidColumnIndex(path, table, "Item", "id");
             indicesMap.put("id", this.idIndex);
@@ -58,7 +58,7 @@ public class ItemRealmProxy extends Item
         List<String> fieldNames = new ArrayList<String>();
         fieldNames.add("name");
         fieldNames.add("count");
-        fieldNames.add("note");
+        fieldNames.add("date");
         fieldNames.add("id");
         FIELD_NAMES = Collections.unmodifiableList(fieldNames);
     }
@@ -99,19 +99,19 @@ public class ItemRealmProxy extends Item
 
     @Override
     @SuppressWarnings("cast")
-    public String getNote() {
+    public String getDate() {
         realm.checkIfValid();
-        return (java.lang.String) row.getString(columnInfo.noteIndex);
+        return (java.lang.String) row.getString(columnInfo.dateIndex);
     }
 
     @Override
-    public void setNote(String value) {
+    public void setDate(String value) {
         realm.checkIfValid();
         if (value == null) {
-            row.setNull(columnInfo.noteIndex);
+            row.setNull(columnInfo.dateIndex);
             return;
         }
-        row.setString(columnInfo.noteIndex, value);
+        row.setString(columnInfo.dateIndex, value);
     }
 
     @Override
@@ -132,7 +132,7 @@ public class ItemRealmProxy extends Item
             Table table = transaction.getTable("class_Item");
             table.addColumn(RealmFieldType.STRING, "name", Table.NULLABLE);
             table.addColumn(RealmFieldType.INTEGER, "count", Table.NOT_NULLABLE);
-            table.addColumn(RealmFieldType.STRING, "note", Table.NULLABLE);
+            table.addColumn(RealmFieldType.STRING, "date", Table.NULLABLE);
             table.addColumn(RealmFieldType.INTEGER, "id", Table.NOT_NULLABLE);
             table.setPrimaryKey("");
             return table;
@@ -171,14 +171,14 @@ public class ItemRealmProxy extends Item
             if (table.isColumnNullable(columnInfo.countIndex)) {
                 throw new RealmMigrationNeededException(transaction.getPath(), "Field 'count' does support null values in the existing Realm file. Use corresponding boxed type for field 'count' or migrate using io.realm.internal.Table.convertColumnToNotNullable().");
             }
-            if (!columnTypes.containsKey("note")) {
-                throw new RealmMigrationNeededException(transaction.getPath(), "Missing field 'note' in existing Realm file. Either remove field or migrate using io.realm.internal.Table.addColumn().");
+            if (!columnTypes.containsKey("date")) {
+                throw new RealmMigrationNeededException(transaction.getPath(), "Missing field 'date' in existing Realm file. Either remove field or migrate using io.realm.internal.Table.addColumn().");
             }
-            if (columnTypes.get("note") != RealmFieldType.STRING) {
-                throw new RealmMigrationNeededException(transaction.getPath(), "Invalid type 'String' for field 'note' in existing Realm file.");
+            if (columnTypes.get("date") != RealmFieldType.STRING) {
+                throw new RealmMigrationNeededException(transaction.getPath(), "Invalid type 'String' for field 'date' in existing Realm file.");
             }
-            if (!table.isColumnNullable(columnInfo.noteIndex)) {
-                throw new RealmMigrationNeededException(transaction.getPath(), "Field 'note' is required. Either set @Required to field 'note' or migrate using io.realm.internal.Table.convertColumnToNullable().");
+            if (!table.isColumnNullable(columnInfo.dateIndex)) {
+                throw new RealmMigrationNeededException(transaction.getPath(), "Field 'date' is required. Either set @Required to field 'date' or migrate using io.realm.internal.Table.convertColumnToNullable().");
             }
             if (!columnTypes.containsKey("id")) {
                 throw new RealmMigrationNeededException(transaction.getPath(), "Missing field 'id' in existing Realm file. Either remove field or migrate using io.realm.internal.Table.addColumn().");
@@ -221,11 +221,11 @@ public class ItemRealmProxy extends Item
                 obj.setCount((int) json.getInt("count"));
             }
         }
-        if (json.has("note")) {
-            if (json.isNull("note")) {
-                obj.setNote(null);
+        if (json.has("date")) {
+            if (json.isNull("date")) {
+                obj.setDate(null);
             } else {
-                obj.setNote((String) json.getString("note"));
+                obj.setDate((String) json.getString("date"));
             }
         }
         if (json.has("id")) {
@@ -259,12 +259,12 @@ public class ItemRealmProxy extends Item
                 } else {
                     obj.setCount((int) reader.nextInt());
                 }
-            } else if (name.equals("note")) {
+            } else if (name.equals("date")) {
                 if (reader.peek() == JsonToken.NULL) {
                     reader.skipValue();
-                    obj.setNote(null);
+                    obj.setDate(null);
                 } else {
-                    obj.setNote((String) reader.nextString());
+                    obj.setDate((String) reader.nextString());
                 }
             } else if (name.equals("id")) {
                 if (reader.peek() == JsonToken.NULL) {
@@ -293,7 +293,7 @@ public class ItemRealmProxy extends Item
         cache.put(newObject, (RealmObjectProxy) realmObject);
         realmObject.setName(newObject.getName());
         realmObject.setCount(newObject.getCount());
-        realmObject.setNote(newObject.getNote());
+        realmObject.setDate(newObject.getDate());
         realmObject.setId(newObject.getId());
         return realmObject;
     }
@@ -318,7 +318,7 @@ public class ItemRealmProxy extends Item
         }
         standaloneObject.setName(realmObject.getName());
         standaloneObject.setCount(realmObject.getCount());
-        standaloneObject.setNote(realmObject.getNote());
+        standaloneObject.setDate(realmObject.getDate());
         standaloneObject.setId(realmObject.getId());
         return standaloneObject;
     }
@@ -337,8 +337,8 @@ public class ItemRealmProxy extends Item
         stringBuilder.append(getCount());
         stringBuilder.append("}");
         stringBuilder.append(",");
-        stringBuilder.append("{note:");
-        stringBuilder.append(getNote() != null ? getNote() : "null");
+        stringBuilder.append("{date:");
+        stringBuilder.append(getDate() != null ? getDate() : "null");
         stringBuilder.append("}");
         stringBuilder.append(",");
         stringBuilder.append("{id:");

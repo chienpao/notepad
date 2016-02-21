@@ -56,13 +56,13 @@ public class ItemAdapter extends BaseAdapter {
 
             EditText itemName = (EditText) convertView.findViewById(R.id.item_name_editText);
             EditText itemCount = (EditText) convertView.findViewById(R.id.item_count_editText);
-            EditText itemNote = (EditText) convertView.findViewById(R.id.item_note_editText);
+            EditText itemDate = (EditText) convertView.findViewById(R.id.item_date_editText);
             Button deleteButton = (Button) convertView.findViewById(R.id.delete_button);
 
             itemViewHolder = new ItemViewHolder();
             itemViewHolder.mItemName = itemName;
             itemViewHolder.mItemCount = itemCount;
-            itemViewHolder.mItemNote = itemNote;
+            itemViewHolder.mItemDate = itemDate;
             itemViewHolder.mDeleteButton = deleteButton;
             convertView.setTag(itemViewHolder);
 
@@ -73,21 +73,21 @@ public class ItemAdapter extends BaseAdapter {
         // Set Tag every time for position
         itemViewHolder.mItemName.setTag(position);
         itemViewHolder.mItemCount.setTag(position);
-        itemViewHolder.mItemNote.setTag(position);
+        itemViewHolder.mItemDate.setTag(position);
 
         final Item item = mItemArrayList.get(position);
         String name = item.getName();
         int count = item.getCount();
-        String note = item.getNote();
+        String date = item.getDate();
 
         // Set content here
         itemViewHolder.mItemName.setText(name);
         itemViewHolder.mItemCount.setText(Integer.toString(count));
-        itemViewHolder.mItemNote.setText(note);
+        itemViewHolder.mItemDate.setText(date);
 
         itemViewHolder.mItemName.addTextChangedListener(new NameTextWatcher(itemViewHolder));
         itemViewHolder.mItemCount.addTextChangedListener(new CountTextWatcher(itemViewHolder));
-        itemViewHolder.mItemNote.addTextChangedListener(new NoteTextWatcher(itemViewHolder));
+        itemViewHolder.mItemDate.addTextChangedListener(new NoteTextWatcher(itemViewHolder));
 
         itemViewHolder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +108,7 @@ public class ItemAdapter extends BaseAdapter {
     private class ItemViewHolder {
         public EditText mItemName;
         public EditText mItemCount;
-        public EditText mItemNote;
+        public EditText mItemDate;
         public Button mDeleteButton;
     }
 
@@ -188,8 +188,8 @@ public class ItemAdapter extends BaseAdapter {
         @Override
         public void afterTextChanged(Editable s) {
             if (s != null && !"".equals(s.toString())) {
-                int position = (Integer) mItemViewHolder.mItemNote.getTag();
-                mItemArrayList.get(position).setNote(s.toString());
+                int position = (Integer) mItemViewHolder.mItemDate.getTag();
+                mItemArrayList.get(position).setDate(s.toString());
             }
         }
     }

@@ -26,16 +26,16 @@ public class Item extends RealmObject {
     // All fields are by default persisted.
     private String name;
     private int count;
-    private String note;
+    private String date;
 
     // Constructor
     public Item() {
     }
 
-    public Item(String name, int count, String note) {
+    public Item(String name, int count, String date) {
         this.name = name;
         this.count = count;
-        this.note = note;
+        this.date = date;
     }
 
     // Other objects in a one-to-one relation must also subclass RealmObject
@@ -70,12 +70,12 @@ public class Item extends RealmObject {
         this.count = count;
     }
 
-    public String getNote() {
-        return note;
+    public String getDate() {
+        return date;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     /*public Dog getDog() {

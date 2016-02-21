@@ -51,12 +51,12 @@ public class HistoryItemAdapter extends BaseAdapter {
 
             TextView itemName = (TextView) convertView.findViewById(R.id.item_name_textView);
             TextView itemCount = (TextView) convertView.findViewById(R.id.item_count_textView);
-            TextView itemNote = (TextView) convertView.findViewById(R.id.item_note_textView);
+            TextView itemDate = (TextView) convertView.findViewById(R.id.item_date_textView);
 
             itemViewHolder = new ItemViewHolder();
             itemViewHolder.mItemName = itemName;
             itemViewHolder.mItemCount = itemCount;
-            itemViewHolder.mItemNote = itemNote;
+            itemViewHolder.mItemDate = itemDate;
             convertView.setTag(itemViewHolder);
 
         } else {
@@ -66,14 +66,14 @@ public class HistoryItemAdapter extends BaseAdapter {
         final Item item = mHistoryItemArrayList.get(position);
         String name = item.getName();
         int count = item.getCount();
-        String note = item.getNote();
+        String date = item.getDate();
 
         // Set content here
         //if (name != null)
         itemViewHolder.mItemName.setText(name);
         itemViewHolder.mItemCount.setText(Integer.toString(count));
         //if (note != null)
-        itemViewHolder.mItemNote.setText(note);
+        itemViewHolder.mItemDate.setText(date);
 
         return convertView;
     }
@@ -81,7 +81,7 @@ public class HistoryItemAdapter extends BaseAdapter {
     private class ItemViewHolder {
         public TextView mItemName;
         public TextView mItemCount;
-        public TextView mItemNote;
+        public TextView mItemDate;
     }
 
     public void refreshAdapter() {

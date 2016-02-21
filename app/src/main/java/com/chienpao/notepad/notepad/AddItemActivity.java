@@ -40,7 +40,7 @@ public class AddItemActivity extends BasicActivity {
         containerLinearLayout.removeAllViews();
 
         mItemArrayList = new ArrayList<>();
-        mItemArrayList.add(new Item("coke", 10, "for party"));
+        mItemArrayList.add(new Item("coke", 10, "February 21, 2016"));
         mSaveButton = (Button) findViewById(R.id.save_button);
         mNewButton = (Button) findViewById(R.id.new_button);
         mItemAdapter = new ItemAdapter(this, mItemArrayList, mSaveButton);
@@ -59,7 +59,7 @@ public class AddItemActivity extends BasicActivity {
                     Item realItem = mRealm.createObject(Item.class);
                     realItem.setName(item.getName());
                     realItem.setCount(item.getCount());
-                    realItem.setNote(item.getNote());
+                    realItem.setDate(item.getDate());
                 }
 
                 // When the transaction is committed, all changes a synced to disk.
