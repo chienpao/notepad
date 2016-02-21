@@ -52,7 +52,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:text="@string/add_item_activity_item_note"
+            android:text="@string/add_item_activity_item_date"
             />
 
     </LinearLayout>

@@ -6,9 +6,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.chienpao.notepad.notepad.adapter.HistoryItemAdapter;
 import com.chienpao.notepad.notepad.model.Cat;
 import com.chienpao.notepad.notepad.model.Dog;
 import com.chienpao.notepad.notepad.model.Item;
@@ -25,7 +29,10 @@ public class MainActivity extends BasicActivity {
 
     private LinearLayout rootLayout = null;
     private TextView mItemSumTextView;
-    private ArrayList<Item> mItemArrayList;
+    private Button mDeleteHistoryButton;
+    private ListView mHistoryListView;
+    private HistoryItemAdapter mHistoryItemAdapter;
+    private ArrayList<Item> mHistoryItemArrayList;
 
     private Realm realm;
 
@@ -37,12 +44,31 @@ public class MainActivity extends BasicActivity {
         rootLayout.removeAllViews();
 
         mItemSumTextView = (TextView) findViewById(R.id.item_sum_textView);
-
-        // These operations are small enough that
-        // we can generally safely run them on the UI thread.
+        mDeleteHistoryButton = (Button) findViewById(R.id.delete_history_button);
+        mHistoryItemArrayList = new ArrayList<>();
+        mHistoryItemAdapter = new HistoryItemAdapter(this, mHistoryItemArrayList);
+        mHistoryListView = (ListView) findViewById(R.id.history_list_view);
+        mHistoryListView.setAdapter(mHistoryItemAdapter);
 
         // Open the default Realm for the UI thread.
         realm = Realm.getInstance(this);
+
+        mDeleteHistoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                realm.beginTransaction();
+                realm.allObjects(Item.class).clear();
+                realm.commitTransaction();
+                mHistoryItemArrayList.clear();
+                mHistoryItemAdapter.refreshAdapter();
+
+                Toast.makeText(MainActivity.this, getString(R.string.history_activity_delete_history_toast), Toast.LENGTH_LONG).show();
+                mDeleteHistoryButton.setEnabled(false);
+            }
+        });
+
+        // These operations are small enough that
+        // we can generally safely run them on the UI thread.
 
         //basicCRUD(realm);
         //basicQuery(realm);
@@ -68,16 +94,24 @@ public class MainActivity extends BasicActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mItemArrayList = new ArrayList<>();
+
+        // Clear history array list
+        mHistoryItemArrayList.clear();
+
         // Load all items from realm
         RealmResults<Item> itemResult = realm.where(Item.class).findAll();
         for (Item item : itemResult)
-            mItemArrayList.add(item);
+            mHistoryItemArrayList.add(item);
 
-        if(mItemArrayList.isEmpty())
-            mItemSumTextView.setText("0");
-        else
-            mItemSumTextView.setText(Integer.toString(mItemArrayList.size()));
+        if (mHistoryItemArrayList.isEmpty()) {
+            mItemSumTextView.setText(getString(R.string.main_activity_notes, "0"));
+            mDeleteHistoryButton.setEnabled(false);
+        } else {
+            mDeleteHistoryButton.setEnabled(true);
+            mItemSumTextView.setText(getString(R.string.main_activity_notes, Integer.toString(mHistoryItemArrayList.size())));
+        }
+
+        mHistoryItemAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -247,10 +281,6 @@ public class MainActivity extends BasicActivity {
         switch (view.getId()) {
             case R.id.add_button:
                 intent = new Intent(this, AddItemActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.history_button:
-                intent = new Intent(this, HistoryActivity.class);
                 startActivity(intent);
                 break;
         }

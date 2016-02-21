@@ -6,13 +6,15 @@
     <string name="title_activity_additem">AddItemActivity</string>
     <string name="title_activity_history">HistoryActivity</string>
 
+    <!-- Main Activity -->
     <string name="main_activity_add">Add</string>
     <string name="main_activity_history">History</string>
+    <string name="main_activity_notes">%1$s Notes</string>
 
     <!-- Add Item Activity -->
     <string name="add_item_activity_item_name">Name</string>
     <string name="add_item_activity_item_count">Count</string>
-    <string name="add_item_activity_item_note">Note</string>
+    <string name="add_item_activity_item_date">Date</string>
 
     <string name="add_item_activity_save">Save</string>
     <string name="add_item_activity_save_toast">Save item success!</string>
