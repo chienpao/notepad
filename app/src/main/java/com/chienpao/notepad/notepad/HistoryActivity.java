@@ -1,7 +1,6 @@
 package com.chienpao.notepad.notepad;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +16,7 @@ import java.util.ArrayList;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-public class HistoryActivity extends AppCompatActivity {
+public class HistoryActivity extends BasicActivity {
     private static final String TAG = "HistoryActivity";
     private Button mDeleteHistoryButton;
     private ListView mHistoryListView;

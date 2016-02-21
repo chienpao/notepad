@@ -1,7 +1,6 @@
 package com.chienpao.notepad.notepad;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 
 import io.realm.Realm;
 
-public class AddItemActivity extends AppCompatActivity {
+public class AddItemActivity extends BasicActivity {
     private static final String TAG = "AddItemActivity";
     private ArrayList<Item> mItemArrayList;
     private ListView mListView;
@@ -124,5 +123,10 @@ public class AddItemActivity extends AppCompatActivity {
         tv.setText(txt);
         //containerLinearLayout.removeAllViews();
         containerLinearLayout.addView(tv);
+    }
+
+    @Override
+    public boolean isBackable() {
+        return true;
     }
 }

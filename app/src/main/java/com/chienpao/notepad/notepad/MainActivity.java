@@ -2,7 +2,6 @@ package com.chienpao.notepad.notepad;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,7 +20,7 @@ import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.Sort;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BasicActivity {
     public static final String TAG = "MainActivity";
 
     private LinearLayout rootLayout = null;
