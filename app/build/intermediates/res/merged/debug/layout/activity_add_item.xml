@@ -100,4 +100,4 @@
         android:paddingTop="10sp"
         tools:context=".RealmIntroExample"/>
 
-</RelativeLayout><!-- From: file:/Users/pao/Project/notepad/app/src/main/res/layout/activity_add_item.xml -->
+</RelativeLayout>

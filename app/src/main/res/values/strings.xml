@@ -1,20 +1,35 @@
 <resources>
-    <string name="app_name">notepad</string>
+    <string name="app_name">doctorpad</string>
+
+    <string name="server_client_id">206800117189-2hdiacst6pvr0hcfpt82vd5ck6naabs0.apps.googleusercontent.com</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_additem">AddItemActivity</string>
     <string name="title_activity_history">HistoryActivity</string>
 
+    <!-- Login Activity -->
+    <!-- Button text -->
+    <string name="btn_logout_from_google">Logout from Google</string>
+    <string name="btn_revoke_access">Revoke Access</string>
+    <string name="loading">Loading…</string>
+    <string name="signed_in_fmt">Welcome! Doctor: %s</string>
+    <string name="signed_out">Please sign in to use.</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="title_text">DoctorPad\nGoogle Sign-In</string>
+    <string name="desc_google_icon">Google Logo</string>
+    <string name="start">Start</string>
+
     <!-- Main Activity -->
     <string name="main_activity_add">Add</string>
     <string name="main_activity_history">History</string>
-    <string name="main_activity_notes">%1$s Notes</string>
+    <string name="main_activity_notes">%1$s Patients</string>
 
     <!-- Add Item Activity -->
     <string name="add_item_activity_item_name">Name</string>
-    <string name="add_item_activity_item_count">Count</string>
-    <string name="add_item_activity_item_date">Date</string>
+    <string name="add_item_activity_item_count">Age</string>
+    <string name="add_item_activity_item_date">Birth</string>
 
     <string name="add_item_activity_save">Save</string>
     <string name="add_item_activity_save_toast">Save item success!</string>

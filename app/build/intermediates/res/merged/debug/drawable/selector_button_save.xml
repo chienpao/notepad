@@ -4,4 +4,4 @@
         android:drawable="@android:color/holo_blue_light" />
     <item android:state_enabled="false"
         android:drawable="@android:color/darker_gray" />
-</selector><!-- From: file:/Users/pao/Project/notepad/app/src/main/res/drawable/selector_button_save.xml -->
+</selector>

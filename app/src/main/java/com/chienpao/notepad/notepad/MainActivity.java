@@ -104,11 +104,11 @@ public class MainActivity extends BasicActivity {
             mHistoryItemArrayList.add(item);
 
         if (mHistoryItemArrayList.isEmpty()) {
-            mItemSumTextView.setText(getString(R.string.main_activity_notes, "0"));
+            mItemSumTextView.setText(MainActivity.this.getString(R.string.main_activity_notes, "0"));
             mDeleteHistoryButton.setEnabled(false);
         } else {
             mDeleteHistoryButton.setEnabled(true);
-            mItemSumTextView.setText(getString(R.string.main_activity_notes, Integer.toString(mHistoryItemArrayList.size())));
+            mItemSumTextView.setText(MainActivity.this.getString(R.string.main_activity_notes, Integer.toString(mHistoryItemArrayList.size())));
         }
 
         mHistoryItemAdapter.notifyDataSetChanged();
@@ -284,5 +284,10 @@ public class MainActivity extends BasicActivity {
                 startActivity(intent);
                 break;
         }
+    }
+
+    @Override
+    public boolean isBackable() {
+        return true;
     }
 }

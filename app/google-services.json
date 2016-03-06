@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_id": "notepad-ad259",
+    "project_number": "696597779745",
+    "name": "notepad"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:696597779745:android:f3283fc705bc70ac",
+        "client_id": "android:com.chienpao.notepad",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "com.chienpao.notepad",
+          "certificate_hash": []
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "696597779745-glrnc0u6mj3u7ap783nbc2mrlkporemq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chienpao.notepad",
+            "certificate_hash": "5167CDA1D517346FE49E7C4197B93D11CCD85084"
+          }
+        },
+        {
+          "client_id": "696597779745-vv46pnpf1267rkhjtqcui0aoh6tafgg5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 2
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}

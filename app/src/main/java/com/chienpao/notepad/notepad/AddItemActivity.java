@@ -40,7 +40,7 @@ public class AddItemActivity extends BasicActivity {
         containerLinearLayout.removeAllViews();
 
         mItemArrayList = new ArrayList<>();
-        mItemArrayList.add(new Item("coke", 10, "February 21, 2016"));
+        mItemArrayList.add(new Item("Steve", 30, "February 21, 1986"));
         mSaveButton = (Button) findViewById(R.id.save_button);
         mNewButton = (Button) findViewById(R.id.new_button);
         mItemAdapter = new ItemAdapter(this, mItemArrayList, mSaveButton);
