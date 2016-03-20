@@ -33,8 +33,8 @@
             android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
-            android:name="com.chienpao.notepad.notepad.AddItemActivity"
-            android:label="@string/title_activity_additem"
+            android:name="com.chienpao.notepad.notepad.AddPatientActivity"
+            android:label="@string/title_activity_addpatient"
             android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity

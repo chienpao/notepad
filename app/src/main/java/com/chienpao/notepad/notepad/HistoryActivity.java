@@ -1,23 +1,7 @@
 package com.chienpao.notepad.notepad;
 
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Toast;
-
-import com.chienpao.notepad.notepad.adapter.HistoryItemAdapter;
-import com.chienpao.notepad.notepad.model.Item;
-
-import java.util.ArrayList;
-
-import io.realm.Realm;
-import io.realm.RealmResults;
-
 public class HistoryActivity extends BasicActivity {
-    private static final String TAG = "HistoryActivity";
+    /*private static final String TAG = "HistoryActivity";
     private Button mDeleteHistoryButton;
     private ListView mHistoryListView;
     private HistoryItemAdapter mHistoryItemAdapter;
@@ -84,5 +68,5 @@ public class HistoryActivity extends BasicActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 }

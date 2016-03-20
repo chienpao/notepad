@@ -36,7 +36,6 @@
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:text="@string/add_item_activity_item_name"
             />
 
         <TextView
@@ -44,7 +43,6 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:text="@string/add_item_activity_item_count"
             />
 
         <TextView
@@ -52,7 +50,6 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:text="@string/add_item_activity_item_date"
             />
 
     </LinearLayout>

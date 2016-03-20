@@ -12,10 +12,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.chienpao.notepad.notepad.adapter.HistoryItemAdapter;
+import com.chienpao.notepad.notepad.adapter.PatientAdapter;
 import com.chienpao.notepad.notepad.model.Cat;
 import com.chienpao.notepad.notepad.model.Dog;
-import com.chienpao.notepad.notepad.model.Item;
+import com.chienpao.notepad.notepad.model.Patient;
 import com.chienpao.notepad.notepad.model.Person;
 
 import java.util.ArrayList;
@@ -28,11 +28,11 @@ public class MainActivity extends BasicActivity {
     public static final String TAG = "MainActivity";
 
     private LinearLayout rootLayout = null;
-    private TextView mItemSumTextView;
+    private TextView mPatientSumTextView;
     private Button mDeleteHistoryButton;
-    private ListView mHistoryListView;
-    private HistoryItemAdapter mHistoryItemAdapter;
-    private ArrayList<Item> mHistoryItemArrayList;
+    private ListView mPatientListView;
+    private PatientAdapter mPatientAdapter;
+    private ArrayList<Patient> mPatientArrayList;
 
     private Realm realm;
 
@@ -43,12 +43,12 @@ public class MainActivity extends BasicActivity {
         rootLayout = ((LinearLayout) findViewById(R.id.container));
         rootLayout.removeAllViews();
 
-        mItemSumTextView = (TextView) findViewById(R.id.item_sum_textView);
+        mPatientSumTextView = (TextView) findViewById(R.id.patient_sum_textView);
         mDeleteHistoryButton = (Button) findViewById(R.id.delete_history_button);
-        mHistoryItemArrayList = new ArrayList<>();
-        mHistoryItemAdapter = new HistoryItemAdapter(this, mHistoryItemArrayList);
-        mHistoryListView = (ListView) findViewById(R.id.history_list_view);
-        mHistoryListView.setAdapter(mHistoryItemAdapter);
+        mPatientArrayList = new ArrayList<>();
+        mPatientAdapter = new PatientAdapter(this, mPatientArrayList);
+        mPatientListView = (ListView) findViewById(R.id.patient_list_view);
+        mPatientListView.setAdapter(mPatientAdapter);
 
         // Open the default Realm for the UI thread.
         realm = Realm.getInstance(this);
@@ -56,11 +56,11 @@ public class MainActivity extends BasicActivity {
         mDeleteHistoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 realm.beginTransaction();
-                realm.allObjects(Item.class).clear();
+                realm.allObjects(Patient.class).clear();
                 realm.commitTransaction();
-                mHistoryItemArrayList.clear();
-                mHistoryItemAdapter.refreshAdapter();
+                onRefresh();
 
                 Toast.makeText(MainActivity.this, getString(R.string.history_activity_delete_history_toast), Toast.LENGTH_LONG).show();
                 mDeleteHistoryButton.setEnabled(false);
@@ -95,23 +95,7 @@ public class MainActivity extends BasicActivity {
     protected void onResume() {
         super.onResume();
 
-        // Clear history array list
-        mHistoryItemArrayList.clear();
-
-        // Load all items from realm
-        RealmResults<Item> itemResult = realm.where(Item.class).findAll();
-        for (Item item : itemResult)
-            mHistoryItemArrayList.add(item);
-
-        if (mHistoryItemArrayList.isEmpty()) {
-            mItemSumTextView.setText(MainActivity.this.getString(R.string.main_activity_notes, "0"));
-            mDeleteHistoryButton.setEnabled(false);
-        } else {
-            mDeleteHistoryButton.setEnabled(true);
-            mItemSumTextView.setText(MainActivity.this.getString(R.string.main_activity_notes, Integer.toString(mHistoryItemArrayList.size())));
-        }
-
-        mHistoryItemAdapter.notifyDataSetChanged();
+        onRefresh();
     }
 
     @Override
@@ -256,31 +240,31 @@ public class MainActivity extends BasicActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // Inflate the menu; this adds Patients to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
+    public boolean onOptionsItemSelected(MenuItem Patient) {
+        // Handle action bar Patient clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        int id = Patient.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
 
-        return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(Patient);
     }
 
     public void onClickHandler(View view) {
         Intent intent;
         switch (view.getId()) {
-            case R.id.add_button:
-                intent = new Intent(this, AddItemActivity.class);
+            case R.id.new_button:
+                intent = new Intent(this, AddPatientActivity.class);
                 startActivity(intent);
                 break;
         }
@@ -289,5 +273,25 @@ public class MainActivity extends BasicActivity {
     @Override
     public boolean isBackable() {
         return true;
+    }
+
+    private void onRefresh() {
+        // Clear history array list
+        mPatientArrayList.clear();
+
+        // Load all Patients from realm
+        RealmResults<Patient> PatientResult = realm.where(Patient.class).findAll();
+        for (Patient Patient : PatientResult)
+            mPatientArrayList.add(Patient);
+
+        if (mPatientArrayList.isEmpty()) {
+            mPatientSumTextView.setText(MainActivity.this.getString(R.string.main_activity_notes, "0"));
+            mDeleteHistoryButton.setEnabled(false);
+        } else {
+            mDeleteHistoryButton.setEnabled(true);
+            mPatientSumTextView.setText(MainActivity.this.getString(R.string.main_activity_notes, Integer.toString(mPatientArrayList.size())));
+        }
+
+        mPatientAdapter.notifyDataSetChanged();
     }
 }

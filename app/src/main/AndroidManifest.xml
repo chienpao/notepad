@@ -22,8 +22,8 @@
             android:windowSoftInputMode="adjustPan">
         </activity>
         <activity
-            android:name=".AddItemActivity"
-            android:label="@string/title_activity_additem"
+            android:name=".AddPatientActivity"
+            android:label="@string/title_activity_addpatient"
             android:windowSoftInputMode="adjustPan">
         </activity>
         <activity

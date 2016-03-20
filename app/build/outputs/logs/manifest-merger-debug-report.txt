@@ -60,14 +60,14 @@ ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:19:9-23:2
 		ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:21:13-45
 	android:name
 		ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:20:13-41
-activity#com.chienpao.notepad.notepad.AddItemActivity
+activity#com.chienpao.notepad.notepad.AddPatientActivity
 ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:24:9-28:20
 	android:windowSoftInputMode
 		ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:27:13-52
 	android:label
-		ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:26:13-59
+		ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:26:13-62
 	android:name
-		ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:25:13-44
+		ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:25:13-47
 activity#com.chienpao.notepad.notepad.HistoryActivity
 ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:29:9-32:20
 	android:label
