@@ -13,10 +13,6 @@ import com.chienpao.notepad.notepad.model.Patient;
 
 import java.util.ArrayList;
 
-
-/**
- * Created by pao on 16/2/6.
- */
 public class PatientAdapter extends BaseAdapter {
 
     private static final String TAG = "PatientAdapter";
@@ -82,11 +78,12 @@ public class PatientAdapter extends BaseAdapter {
         itemViewHolder.mPatientCheckbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (v.isSelected()) {
+                //TODO: single delete...
+                /*if (v.isSelected()) {
                     mCheckedArrayList.set(position, true);
                 } else {
                     mCheckedArrayList.set(position, false);
-                }
+                }*/
             }
         });
 
@@ -99,6 +96,7 @@ public class PatientAdapter extends BaseAdapter {
         public TextView mPatientExpectDate;
         public CheckBox mPatientCheckbox;
     }
+
 
     public void refreshAdapter() {
         notifyDataSetChanged();

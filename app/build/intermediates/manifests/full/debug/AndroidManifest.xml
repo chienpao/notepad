@@ -38,10 +38,6 @@
             android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
-            android:name="com.chienpao.notepad.notepad.HistoryActivity"
-            android:label="@string/title_activity_history" >
-        </activity>
-        <activity
             android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
             android:excludeFromRecents="true"
             android:exported="false"

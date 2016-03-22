@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:2:1-35:12
+ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:2:1-31:12
 	xmlns:android
 		ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:3:11-69
 	package
@@ -14,7 +14,7 @@ ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:2:1-35:12
 		INJECTED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml
 application
-ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:5:5-33:19
+ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:5:5-29:19
 MERGED from [com.android.support:appcompat-v7:23.2.0] /Users/pao/Project/notepad/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-v4:23.2.0] /Users/pao/Project/notepad/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:animated-vector-drawable:23.2.0] /Users/pao/Project/notepad/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.2.0/AndroidManifest.xml:7:5-20
@@ -68,12 +68,6 @@ ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:24:9-28:2
 		ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:26:13-62
 	android:name
 		ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:25:13-47
-activity#com.chienpao.notepad.notepad.HistoryActivity
-ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:29:9-32:20
-	android:label
-		ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:31:13-59
-	android:name
-		ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:30:13-44
 uses-sdk
 INJECTED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:23.2.0] /Users/pao/Project/notepad/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/AndroidManifest.xml:21:5-23:78
