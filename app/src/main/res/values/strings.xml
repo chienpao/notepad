@@ -39,4 +39,6 @@
     <string name="history_activity_delete_history">Delete History</string>
     <string name="history_activity_delete_history_toast">Delete History success!</string>
 
+    <string name="add_date_dialog_title">When\'s the date?</string>
+
 </resources>

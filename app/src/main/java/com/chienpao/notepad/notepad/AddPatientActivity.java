@@ -1,16 +1,26 @@
 package com.chienpao.notepad.notepad;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.chienpao.notepad.notepad.model.Patient;
 
+import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -29,6 +39,8 @@ public class AddPatientActivity extends BasicActivity {
     private EditText mActualDateEditText;
     private Realm mRealm;
     private ArrayList<Patient> mPatientArrayList;
+    private DatePickerFragment dateTimeFragment;
+    private int mDatePickerFlag = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +60,30 @@ public class AddPatientActivity extends BasicActivity {
         mSecondClinicHosptialEditText = (EditText) findViewById(R.id.second_clinic_hospital_editText);
         mSecondDoctorNameEditText = (EditText) findViewById(R.id.second_doctor_name_editText);
         mActualDateEditText = (EditText) findViewById(R.id.actual_date_editText);
+
+        mDOBEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDatePickerFlag = 0;
+                showDatePickerDialog(v);
+            }
+        });
+
+        mExpectDateEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDatePickerFlag = 1;
+                showDatePickerDialog(v);
+            }
+        });
+
+        mActualDateEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDatePickerFlag = 2;
+                showDatePickerDialog(v);
+            }
+        });
 
         mPatientArrayList = new ArrayList<>();
         RealmResults<Patient> PatientResult = mRealm.where(Patient.class).findAll();
@@ -92,6 +128,8 @@ public class AddPatientActivity extends BasicActivity {
                 finish();
             }
         });
+
+        setupDateTimeFragment();
     }
 
     @Override
@@ -129,5 +167,80 @@ public class AddPatientActivity extends BasicActivity {
             return false;
 
         return true;
+    }
+
+    private void showDatePickerDialog(View v) {
+        dateTimeFragment.show(this.getSupportFragmentManager(), "datePicker");
+    }
+
+    private void setupDateTimeFragment() {
+
+        /*if (mApp.getUserBirthdate() != null) {
+            userBirthdate = mApp.getUserBirthdate();
+
+        } else {
+            userBirthdate = DateTime.now(); //default
+        }*/
+
+        dateTimeFragment = new DatePickerFragment();
+    }
+
+    /*
+     * =================================================================================
+     * NESTED CLASSES
+     * =================================================================================
+     */
+    public class DatePickerFragment extends DialogFragment
+            implements DatePickerDialog.OnDateSetListener {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the current date as the default date in the picker
+            int year = 0;
+            int month = 0;
+            int day = 0;
+            /*if (userBirthdate != null) {
+                year = userBirthdate.getYear();
+                month = userBirthdate.getMonthOfYear() - 1;
+                day = userBirthdate.getDayOfMonth();
+            } else {*/
+            LocalDateTime now = LocalDateTime.now();
+            year = now.getYear();
+            month = now.getMonthOfYear();
+            day = now.getDayOfMonth();
+            //}
+
+            DatePickerDialog dateDlg = new DatePickerDialog(getActivity(), this, year, month, day);
+            dateDlg.setMessage(getString(R.string.add_date_dialog_title));
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.MONTH, calendar.getActualMaximum(Calendar.MONTH));
+            calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DATE));
+            dateDlg.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+
+            // Create a new instance of DatePickerDialog and return it
+            return dateDlg;
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            // Do something with the date chosen by the user
+            DateTime dateTime = new DateTime(year, month + 1, day, 0, 0); // +1 for the month sice datePicker using range 0-11
+            //userBirthdate = dateTime;
+
+            DateTimeFormatter fmt = DateTimeFormat.forPattern("dd MMM yyyy");
+
+
+            switch (mDatePickerFlag){
+                case 0:
+                    mDOBEditText.setText(fmt.print(dateTime));
+                    break;
+                case 1:
+                    mExpectDateEditText.setText(fmt.print(dateTime));
+                    break;
+                case 2:
+                    mActualDateEditText.setText(fmt.print(dateTime));
+                    break;
+            }
+
+        }
     }
 }

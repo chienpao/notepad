@@ -107,5 +107,6 @@
     <orderEntry type="library" exported="" name="realm-android-0.87.4" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-23.2.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-measurement-8.4.0" level="project" />
+    <orderEntry type="library" exported="" name="joda-time-2.9.3" level="project" />
   </component>
 </module>

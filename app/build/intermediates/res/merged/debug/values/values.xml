@@ -236,6 +236,7 @@
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <string name="action_settings">Settings</string>
+    <string name="add_date_dialog_title">When\'s the date?</string>
     <string name="add_item_activity_delete">Delete</string>
     <string name="add_item_activity_save">Save</string>
     <string name="add_item_activity_save_toast">Save item success!</string>
