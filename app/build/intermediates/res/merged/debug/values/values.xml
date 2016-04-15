@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <string-array name="doctorArray" translatable="false">
+        <item>John Ad</item>
+        <item>Alex T</item>
+        <item>Jason B</item>
+        <item>Mandy RR</item>
+        <item>Karen Lin</item>
+        <item>Larry Ba</item>
+        <item>Kobe James</item>
+        <item>Steven Hook</item>
+        <item>Marshall Curry</item>
+        <item>Rachel Green</item>
+    </string-array>
     <attr format="reference" name="drawerArrowStyle"/>
     <attr format="dimension" name="height"/>
     <attr format="boolean" name="isLightTheme"/>

@@ -4,14 +4,20 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import com.chienpao.notepad.notepad.adapter.DoctorListAdapter;
 import com.chienpao.notepad.notepad.model.Patient;
 
 import org.joda.time.DateTime;
@@ -20,6 +26,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 import io.realm.Realm;
@@ -41,6 +48,7 @@ public class AddPatientActivity extends BasicActivity {
     private ArrayList<Patient> mPatientArrayList;
     private DatePickerFragment dateTimeFragment;
     private int mDatePickerFlag = 0;
+    private int mDoctorFlag = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +90,22 @@ public class AddPatientActivity extends BasicActivity {
             public void onClick(View v) {
                 mDatePickerFlag = 2;
                 showDatePickerDialog(v);
+            }
+        });
+
+        mFirstDoctorNameEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDoctorFlag = 0;
+                showDoctorListDialogFragment();
+            }
+        });
+
+        mSecondDoctorNameEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDoctorFlag = 1;
+                showDoctorListDialogFragment();
             }
         });
 
@@ -215,7 +239,7 @@ public class AddPatientActivity extends BasicActivity {
             Calendar calendar = Calendar.getInstance();
             calendar.set(Calendar.MONTH, calendar.getActualMaximum(Calendar.MONTH));
             calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DATE));
-            dateDlg.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+            //dateDlg.getDatePicker().setMaxDate(calendar.getTimeInMillis());
 
             // Create a new instance of DatePickerDialog and return it
             return dateDlg;
@@ -229,7 +253,7 @@ public class AddPatientActivity extends BasicActivity {
             DateTimeFormatter fmt = DateTimeFormat.forPattern("dd MMM yyyy");
 
 
-            switch (mDatePickerFlag){
+            switch (mDatePickerFlag) {
                 case 0:
                     mDOBEditText.setText(fmt.print(dateTime));
                     break;
@@ -242,5 +266,83 @@ public class AddPatientActivity extends BasicActivity {
             }
 
         }
+    }
+
+    // Inner class
+    public static class DoctorListDialogFragment extends DialogFragment {
+
+        private ArrayList<String> mStringArrayList;
+
+        static DoctorListDialogFragment newInstance(ArrayList<String> stringArrayList) {
+            DoctorListDialogFragment f = new DoctorListDialogFragment();
+
+            // Supply stringArrayList input as an argument.
+            Bundle args = new Bundle();
+            args.putStringArrayList("stringArrayList", stringArrayList);
+            f.setArguments(args);
+
+            return f;
+        }
+
+
+        public interface DialogClickListener {
+            void onClick(int position);
+        }
+
+        private DialogClickListener mDialogClickListener;
+
+        public void setDialogClickListener(DialogClickListener dialogClickListener) {
+            mDialogClickListener = dialogClickListener;
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+
+            mStringArrayList = getArguments().getStringArrayList("stringArrayList");
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+
+            View view = inflater.inflate(R.layout.fragment_dialog_doctor_list, container);
+
+            ListView listView = (ListView) view.findViewById(R.id.list_view);
+            DoctorListAdapter doctorListAdapter = new DoctorListAdapter(getActivity(), mStringArrayList);
+            listView.setAdapter(doctorListAdapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    mDialogClickListener.onClick(position);
+                    dismiss();
+                }
+            });
+            return view;
+        }
+
+    }
+
+    private void showDoctorListDialogFragment() {
+        String[] doctorArray = getResources().getStringArray(R.array.doctorArray);
+        final ArrayList<String> doctorArrayList = new ArrayList<>(Arrays.asList(doctorArray));
+
+        DoctorListDialogFragment doctorListDialogFragment = DoctorListDialogFragment.newInstance(doctorArrayList);
+        doctorListDialogFragment.setDialogClickListener(new DoctorListDialogFragment.DialogClickListener() {
+            @Override
+            public void onClick(int position) {
+                switch (mDoctorFlag) {
+                    case 0:
+                        mFirstDoctorNameEditText.setText(doctorArrayList.get(position));
+                        break;
+                    case 1:
+                        mSecondDoctorNameEditText.setText(doctorArrayList.get(position));
+                        break;
+                }
+            }
+        });
+
+        doctorListDialogFragment.show(getSupportFragmentManager(), "doctorListDialogFragment");
     }
 }
