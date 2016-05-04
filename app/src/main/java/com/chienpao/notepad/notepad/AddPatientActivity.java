@@ -25,9 +25,11 @@ import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -49,6 +51,7 @@ public class AddPatientActivity extends BasicActivity {
     private DatePickerFragment dateTimeFragment;
     private int mDatePickerFlag = 0;
     private int mDoctorFlag = 0;
+    private DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/yyyy");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,15 +136,22 @@ public class AddPatientActivity extends BasicActivity {
                 else {
                     realPatient.setId(mPatientArrayList.size() + 1);
                 }
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
                 realPatient.setPatientLastName(mLastNameEditText.getText().toString());
                 realPatient.setPatientFirstName(mFirstNameEditText.getText().toString());
-                realPatient.setPatientDateOfBirth(mDOBEditText.getText().toString());
+                try {
+                    realPatient.setPatientDateOfBirth(new Date(sdf.parse(mDOBEditText.getText().toString()).getTime()));
+                    realPatient.setExpectDate(new Date(sdf.parse(mExpectDateEditText.getText().toString()).getTime()));
+                    realPatient.setActualDate(new Date(sdf.parse(mActualDateEditText.getText().toString()).getTime()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 realPatient.setFirstClinicHospital(mFirstClinicHosptialEditText.getText().toString());
                 realPatient.setFirstDoctorName(mFirstDoctorNameEditText.getText().toString());
-                realPatient.setExpectDate(mExpectDateEditText.getText().toString());
                 realPatient.setSecondClinicHospital(mSecondClinicHosptialEditText.getText().toString());
                 realPatient.setSecondDoctorName(mSecondDoctorNameEditText.getText().toString());
-                realPatient.setActualDate(mActualDateEditText.getText().toString());
+
 
                 // When the transaction is committed, all changes a synced to disk.
                 mRealm.commitTransaction();
@@ -249,9 +259,6 @@ public class AddPatientActivity extends BasicActivity {
             // Do something with the date chosen by the user
             DateTime dateTime = new DateTime(year, month + 1, day, 0, 0); // +1 for the month sice datePicker using range 0-11
             //userBirthdate = dateTime;
-
-            DateTimeFormatter fmt = DateTimeFormat.forPattern("dd MMM yyyy");
-
 
             switch (mDatePickerFlag) {
                 case 0:

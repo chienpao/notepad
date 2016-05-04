@@ -132,7 +132,7 @@ public class LoginActivity extends AppCompatActivity implements
             updateUI(true);
         } else {
             // Signed out, show unauthenticated UI.
-            updateUI(false);
+            updateUI(true);
         }
     }
     // [END handleSignInResult]
@@ -244,7 +244,7 @@ public class LoginActivity extends AppCompatActivity implements
     }
 
     private void startOldPatientsPage() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, ViewOldPatientActivity.class);
         startActivity(intent);
     }
 }

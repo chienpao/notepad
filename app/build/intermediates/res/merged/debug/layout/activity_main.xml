@@ -93,21 +93,6 @@
             android:textColor="@android:color/white"
             />
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_margin="1dp"
-            android:background="@android:color/white"/>
-
-        <TextView
-            android:id="@+id/patient_checked_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:padding="5dp"
-            android:text="@string/main_activity_patient_check"
-            android:textColor="@android:color/white"
-            />
 
     </LinearLayout>
 

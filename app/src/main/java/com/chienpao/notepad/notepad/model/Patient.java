@@ -16,6 +16,8 @@
 
 package com.chienpao.notepad.notepad.model;
 
+import java.util.Date;
+
 import io.realm.RealmObject;
 import io.realm.annotations.Ignore;
 
@@ -26,19 +28,19 @@ public class Patient extends RealmObject {
     // All fields are by default persisted.
     private String patientLastName;
     private String patientFirstName;
-    private String patientDateOfBirth;
+    private Date patientDateOfBirth;
     private String firstClinicHospital;
     private String firstDoctorName;
-    private String expectDate;
+    private Date expectDate;
     private String secondClinicHospital;
     private String secondDoctorName;
-    private String actualDate;
+    private Date actualDate;
 
     // Constructor
     public Patient() {
     }
 
-    public Patient(String actualDate, String expectDate, String firstClinicHospital, String firstDoctorName, String patientDateOfBirth, String patientFirstName, String patientLastName, String secondClinicHospital, String secondDoctorName) {
+    public Patient(Date actualDate, Date expectDate, String firstClinicHospital, String firstDoctorName, Date patientDateOfBirth, String patientFirstName, String patientLastName, String secondClinicHospital, String secondDoctorName) {
         this.actualDate = actualDate;
         this.expectDate = expectDate;
         this.firstClinicHospital = firstClinicHospital;
@@ -67,19 +69,19 @@ public class Patient extends RealmObject {
     // So if you prefer you can also just have empty abstract methods.
 
 
-    public String getActualDate() {
+    public Date getActualDate() {
         return actualDate;
     }
 
-    public void setActualDate(String actualDate) {
+    public void setActualDate(Date actualDate) {
         this.actualDate = actualDate;
     }
 
-    public String getExpectDate() {
+    public Date getExpectDate() {
         return expectDate;
     }
 
-    public void setExpectDate(String expectDate) {
+    public void setExpectDate(Date expectDate) {
         this.expectDate = expectDate;
     }
 
@@ -99,11 +101,11 @@ public class Patient extends RealmObject {
         this.firstDoctorName = firstDoctorName;
     }
 
-    public String getPatientDateOfBirth() {
+    public Date getPatientDateOfBirth() {
         return patientDateOfBirth;
     }
 
-    public void setPatientDateOfBirth(String patientDateOfBirth) {
+    public void setPatientDateOfBirth(Date patientDateOfBirth) {
         this.patientDateOfBirth = patientDateOfBirth;
     }
 

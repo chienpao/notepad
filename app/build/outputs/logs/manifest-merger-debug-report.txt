@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:2:1-46:12
+ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:2:1-56:12
 	xmlns:android
 		ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:3:11-69
 	package
@@ -14,7 +14,7 @@ ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:2:1-46:12
 		INJECTED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml
 application
-ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:5:5-44:19
+ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:5:5-54:19
 MERGED from [com.android.support:appcompat-v7:23.2.0] /Users/pao/Project/notepad/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-v4:23.2.0] /Users/pao/Project/notepad/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:animated-vector-drawable:23.2.0] /Users/pao/Project/notepad/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.2.0/AndroidManifest.xml:7:5-20
@@ -92,6 +92,22 @@ ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:39:9-43:2
 		ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:41:13-62
 	android:name
 		ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:40:13-47
+activity#com.chienpao.notepad.notepad.EditPatientActivity
+ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:44:9-48:20
+	android:windowSoftInputMode
+		ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:47:13-52
+	android:label
+		ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:46:13-45
+	android:name
+		ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:45:13-48
+activity#com.chienpao.notepad.notepad.ViewOldPatientActivity
+ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:49:9-53:20
+	android:windowSoftInputMode
+		ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:52:13-52
+	android:label
+		ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:51:13-45
+	android:name
+		ADDED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml:50:13-51
 uses-sdk
 INJECTED from /Users/pao/Project/notepad/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:23.2.0] /Users/pao/Project/notepad/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/AndroidManifest.xml:21:5-23:78

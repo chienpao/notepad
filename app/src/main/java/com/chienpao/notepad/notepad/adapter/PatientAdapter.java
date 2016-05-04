@@ -10,7 +10,9 @@ import android.widget.TextView;
 import com.chienpao.notepad.notepad.R;
 import com.chienpao.notepad.notepad.model.Patient;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class PatientAdapter extends BaseAdapter {
 
@@ -68,12 +70,15 @@ public class PatientAdapter extends BaseAdapter {
         long id = patient.getId();
         String lastName = patient.getPatientLastName();
         String firstName = patient.getPatientFirstName();
-        String expectDate = patient.getExpectDate();
+        Date expectDate = patient.getExpectDate();
 
         // Set content here
         itemViewHolder.mPatientId.setText(String.valueOf(id));
         itemViewHolder.mPatientName.setText(lastName + " " + firstName);
-        itemViewHolder.mPatientExpectDate.setText(expectDate);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String dateString = sdf.format(expectDate);
+        itemViewHolder.mPatientExpectDate.setText(dateString);
         /*itemViewHolder.mPatientCheckbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

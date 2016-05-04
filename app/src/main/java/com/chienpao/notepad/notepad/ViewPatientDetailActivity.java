@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.chienpao.notepad.notepad.model.Patient;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import io.realm.Realm;
 
@@ -45,7 +46,8 @@ public class ViewPatientDetailActivity extends BasicActivity {
         mSecondDoctorNameTextView = (TextView) findViewById(R.id.second_doctor_name_textView);
         mActualDateTextView = (TextView) findViewById(R.id.actual_date_textView);
 
-        setDataFromIntent(getIntent());
+        if (getIntent() != null)
+            setDataFromIntent(getIntent());
 
     }
 
@@ -60,8 +62,8 @@ public class ViewPatientDetailActivity extends BasicActivity {
         if (validate(selectedPatient.getPatientFirstName()))
             mFirstNameTextView.setText(selectedPatient.getPatientFirstName());
 
-        if (validate(selectedPatient.getPatientDateOfBirth()))
-            mDOBTextView.setText(selectedPatient.getPatientDateOfBirth());
+        if (validateDate(selectedPatient.getPatientDateOfBirth()))
+            mDOBTextView.setText(selectedPatient.getPatientDateOfBirth().toString());
 
         if (validate(selectedPatient.getFirstClinicHospital()))
             mFirstClinicHosptialTextView.setText(selectedPatient.getFirstClinicHospital());
@@ -69,8 +71,8 @@ public class ViewPatientDetailActivity extends BasicActivity {
         if (validate(selectedPatient.getFirstDoctorName()))
             mFirstDoctorNameTextView.setText(selectedPatient.getFirstDoctorName());
 
-        if (validate(selectedPatient.getExpectDate()))
-            mExpectDateTextView.setText(selectedPatient.getExpectDate());
+        if (validateDate(selectedPatient.getExpectDate()))
+            mExpectDateTextView.setText(selectedPatient.getExpectDate().toString());
 
         if (validate(selectedPatient.getSecondClinicHospital()))
             mSecondClinicHosptialTextView.setText(selectedPatient.getSecondClinicHospital());
@@ -78,8 +80,8 @@ public class ViewPatientDetailActivity extends BasicActivity {
         if (validate(selectedPatient.getSecondDoctorName()))
             mSecondDoctorNameTextView.setText(selectedPatient.getSecondDoctorName());
 
-        if (validate(selectedPatient.getActualDate()))
-            mActualDateTextView.setText(selectedPatient.getActualDate());
+        if (validateDate(selectedPatient.getActualDate()))
+            mActualDateTextView.setText(selectedPatient.getActualDate().toString());
     }
 
     @Override
@@ -110,6 +112,13 @@ public class ViewPatientDetailActivity extends BasicActivity {
     }
 
     private boolean validate(String validateString) {
+        if (validateString == null)
+            return false;
+        else
+            return true;
+    }
+
+    private boolean validateDate(Date validateString) {
         if (validateString == null)
             return false;
         else

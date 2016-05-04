@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -44,6 +45,16 @@ public class MainActivity extends BasicActivity {
         mPatientAdapter = new PatientAdapter(this, mPatientArrayList);
         mPatientListView = (ListView) findViewById(R.id.patient_list_view);
         mPatientListView.setAdapter(mPatientAdapter);
+        mPatientListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Patient selectedPatient = (Patient)parent.getItemAtPosition(position);
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, EditPatientActivity.class);
+                intent.putExtra("selectedPatientId", selectedPatient.getId());
+                startActivity(intent);
+            }
+        });
 
         // Open the default Realm for the UI thread.
         realm = Realm.getInstance(this);
