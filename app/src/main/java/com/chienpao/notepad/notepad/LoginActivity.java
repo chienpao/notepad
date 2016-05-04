@@ -44,9 +44,13 @@ public class LoginActivity extends AppCompatActivity implements
 
         // Button listeners
         findViewById(R.id.sign_in_button).setOnClickListener(this);
-        findViewById(R.id.start_button).setOnClickListener(this);
         findViewById(R.id.sign_out_button).setOnClickListener(this);
-        findViewById(R.id.disconnect_button).setOnClickListener(this);
+
+        findViewById(R.id.doctors_button).setOnClickListener(this);
+        findViewById(R.id.current_patients_button).setOnClickListener(this);
+        findViewById(R.id.old_patients_button).setOnClickListener(this);
+
+        //findViewById(R.id.disconnect_button).setOnClickListener(this);
 
         // [START configure_signin]
         // Configure sign-in to request the user's ID, email address, and basic
@@ -195,11 +199,13 @@ public class LoginActivity extends AppCompatActivity implements
         if (signedIn) {
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
+            findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
         } else {
             mStatusTextView.setText(R.string.signed_out);
 
             findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
+            findViewById(R.id.sign_out_button).setVisibility(View.GONE);
         }
     }
 
@@ -209,19 +215,35 @@ public class LoginActivity extends AppCompatActivity implements
             case R.id.sign_in_button:
                 signIn();
                 break;
-            case R.id.start_button:
-                start();
-                break;
             case R.id.sign_out_button:
                 signOut();
                 break;
-            case R.id.disconnect_button:
-                revokeAccess();
+            case R.id.doctors_button:
+                startDoctorPage();
                 break;
+            case R.id.current_patients_button:
+                startCurrentPatientsPage();
+                break;
+            case R.id.old_patients_button:
+                startOldPatientsPage();
+                break;
+            /*case R.id.disconnect_button:
+                revokeAccess();
+                break;*/
         }
     }
 
-    private void start() {
+    private void startDoctorPage() {
+        Intent intent = new Intent(this, DoctorActivity.class);
+        startActivity(intent);
+    }
+
+    private void startCurrentPatientsPage() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    private void startOldPatientsPage() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

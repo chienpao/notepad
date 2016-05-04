@@ -19,7 +19,9 @@
     <string name="disconnect">Disconnect</string>
     <string name="title_text">DoctorPad\nGoogle Sign-In</string>
     <string name="desc_google_icon">Google Logo</string>
-    <string name="start">Start</string>
+    <string name="doctors">Doctors</string>
+    <string name="current_patients">Current Patients</string>
+    <string name="old_patients">Old Patients</string>
 
     <!-- Main Activity -->
     <string name="main_activity_add">Add</string>
@@ -40,5 +42,8 @@
     <string name="history_activity_delete_history_toast">Delete History success!</string>
 
     <string name="add_date_dialog_title">When\'s the date?</string>
+
+    <!-- Doctor Activity -->
+    <string name="doctor_activity_title_hint">Choose the doctor as below,</string>
 
 </resources>

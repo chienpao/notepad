@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.chienpao.notepad.notepad.R;
@@ -51,14 +50,14 @@ public class PatientAdapter extends BaseAdapter {
             TextView patientId = (TextView) convertView.findViewById(R.id.patient_id_textView);
             TextView patientName = (TextView) convertView.findViewById(R.id.patient_name_textView);
             TextView patientExpectDate = (TextView) convertView.findViewById(R.id.expect_date_textView);
-            CheckBox patientCheckbox = (CheckBox) convertView.findViewById(R.id.patient_checkbox);
+            //CheckBox patientCheckbox = (CheckBox) convertView.findViewById(R.id.patient_checkbox);
 
             itemViewHolder = new ItemViewHolder();
             itemViewHolder.mPatientId = patientId;
             itemViewHolder.mPatientName = patientName;
             itemViewHolder.mPatientExpectDate = patientExpectDate;
-            itemViewHolder.mPatientCheckbox = patientCheckbox;
-            itemViewHolder.mPatientCheckbox.setTag(patientId);
+            //itemViewHolder.mPatientCheckbox = patientCheckbox;
+            //itemViewHolder.mPatientCheckbox.setTag(patientId);
             convertView.setTag(itemViewHolder);
 
         } else {
@@ -75,17 +74,17 @@ public class PatientAdapter extends BaseAdapter {
         itemViewHolder.mPatientId.setText(String.valueOf(id));
         itemViewHolder.mPatientName.setText(lastName + " " + firstName);
         itemViewHolder.mPatientExpectDate.setText(expectDate);
-        itemViewHolder.mPatientCheckbox.setOnClickListener(new View.OnClickListener() {
+        /*itemViewHolder.mPatientCheckbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: single delete...
-                /*if (v.isSelected()) {
+                if (v.isSelected()) {
                     mCheckedArrayList.set(position, true);
                 } else {
                     mCheckedArrayList.set(position, false);
-                }*/
+                }
             }
-        });
+        });*/
 
         return convertView;
     }
@@ -94,7 +93,7 @@ public class PatientAdapter extends BaseAdapter {
         public TextView mPatientId;
         public TextView mPatientName;
         public TextView mPatientExpectDate;
-        public CheckBox mPatientCheckbox;
+        //public CheckBox mPatientCheckbox;
     }
 
 

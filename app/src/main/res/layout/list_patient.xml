@@ -47,12 +47,12 @@
         android:layout_margin="1dp"
         android:background="@android:color/black"/>
 
-    <CheckBox
+    <!--<CheckBox
         android:id="@+id/patient_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:padding="5dp"
-        />
+        />-->
 
 </LinearLayout>
